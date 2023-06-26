@@ -1,4 +1,4 @@
-# Covid-19 Cases Tracker Application
+# Covid-19 Cases Tracker Application (Java,Spring Boot,Spring MVC)
 
 This application provides real-time tracking of Covid-19 cases worldwide. It displays the total number of cases reported, new cases since the previous day, and a table showing cases by country. Users can search for specific countries and toggle between light and dark mode.
 
