@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Covid-19 Cases Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-Vopn1k6uep/HwWv0sT2kw99hVtyv0xEzMsuVWJ3IvSh8zl5b7kcyT5cFwMJQ3WwAzT0q4EPW0Auv5DRu6MtyBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .jumbotron {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .jumbotron h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            animation: numberAnimation 1s ease-in-out;
+        }
+
+        .lead {
+            font-size: 18px;
+            color: #6c757d;
+        }
+
+        .table {
+            margin-top: 30px;
+        }
+
+        .table th {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        .table td {
+            background-color: #ffffff;
+        }
+
+        .table td:first-child {
+            font-weight: bold;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .dark-mode-toggle i {
+            transition: color 0.3s ease-in-out;
+        }
+
+        .dark-mode {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        .dark-mode .jumbotron {
+            background-color: #343a40;
+        }
+
+        .dark-mode .table th {
+            background-color: #ffffff;
+            color: #343a40;
+        }
+
+        .dark-mode .table td {
+            background-color: #f8f9fa;
+        }
+
+        @keyframes numberAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Covid-19 Cases Tracker Application</h1>
+
+    <div class="jumbotron">
+        <div class="search-box">
+            <input type="text" id="countrySearch" class="form-control" placeholder="Search by country" onkeyup="searchCountries()">
+        </div>
+
+        <h1 class="display-4 number-animate" th:text="${totalGlobalCases}"></h1>
+        <p class="lead">Total cases reported as of today</p>
+        <hr class="my-4">
+        <p>
+            <span>New cases reported since previous day:</span>
+            <span th:text="${newGlobalCases}"></span>
+        </p>
+    </div>
+
+    <table class="table" id="countryTable">
+        <thead>
+        <tr>
+            <th>Country</th>
+            <th>Total cases reported</th>
+            <th>Changes since last day</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="locationStat : ${locationStats}">
+            <td th:text="${locationStat.country}"></td>
+            <td th:text="${locationStat.latestTotalCases}">0</td>
+            <td th:text="${locationStat.diffFromPrevDay}">0</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function searchCountries() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("countrySearch");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("countryTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function toggleDarkMode() {
+            var body = document.getElementsByTagName("body")[0];
+            body.classList.toggle("dark-mode");
+
+            var toggleIcon = document.querySelector(".dark-mode-toggle i");
+            toggleIcon.classList.toggle("fa-moon");
+            toggleIcon.classList.toggle("fa-sun");
+        }
+
+        $(document).ready(function() {
+            $(".number-animate").each(function() {
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 2000,
+                    easing: 'swing',
+                    step: function(now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+            });
+        });
+    </script>
+</div>
+</body>
+</html>
