@@ -2,6 +2,13 @@
 
 This application provides real-time tracking of Covid-19 cases worldwide. It displays the total number of cases reported, new cases since the previous day, and a table showing cases by country. Users can search for specific countries and toggle between light and dark mode.
 
+
+
+<img width="1427" alt="Screenshot 2023-06-26 at 4 49 04 PM" src="https://github.com/Amit-45/covid-19-tracker-/assets/77204104/20de636d-49f2-4c69-956e-92cf94b84440">
+
+
+<img width="1425" alt="Screenshot 2023-06-26 at 4 51 08 PM" src="https://github.com/Amit-45/covid-19-tracker-/assets/77204104/06cde6d9-566c-4c0f-b13e-d8cb98cbdea3">
+
 ## Technologies Used
 
 - Front-end:
@@ -26,9 +33,6 @@ This application provides real-time tracking of Covid-19 cases worldwide. It dis
 - Interactive animations for a visually appealing interface..
 - Integration with a reliable and up-to-date data source.
 
-##Demo 
-
-
 
 ## Usage
 
@@ -38,6 +42,10 @@ This application provides real-time tracking of Covid-19 cases worldwide. It dis
 4. Access the application in your web browser.
 5. Use the search box to find specific countries.
 6. Explore the table and view the total cases and changes per country.
+
+##Demo 
+
+👉  [Click here](https://drive.google.com/file/d/1zpd1G6O0Fy5m1FGXk8Es8g4wGVlXNtmM/view?usp=sharing)
 
 ## Contributing
 
