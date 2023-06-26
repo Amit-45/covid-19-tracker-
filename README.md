@@ -43,7 +43,7 @@ This application provides real-time tracking of Covid-19 cases worldwide. It dis
 5. Use the search box to find specific countries.
 6. Explore the table and view the total cases and changes per country.
 
-##Demo 
+## Demo 
 
 👉  [Click here](https://drive.google.com/file/d/1zpd1G6O0Fy5m1FGXk8Es8g4wGVlXNtmM/view?usp=sharing)
 
